@@ -11,8 +11,8 @@
   This template is mostly a proof of concept and would require some cleanup
 -->
 
-  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 
   <style>
 
@@ -24,6 +24,10 @@
 
     font-family: "Open Sans";
     font-size: 0.6em;
+  }
+
+  resume .resume-wrapper {
+    margin-top: 40px;
   }
 
   resume .new {
@@ -368,9 +372,9 @@
                   <li>{{basics.location.address}}</li>
                 </ul>
 
-                <ul ng-if="basics.location.city && basics.location.postalCode">
-                  <li>Postal Code & City</li>
-                  <li>{{baiscs.location.postalCode}} {{basics.location.city}}</li>
+                <ul ng-if="basics.location.city">
+                  <li>City</li>
+                  <li>{{basics.location.city}}</li>
                 </ul>
 
                 <ul ng-if="basics.location.region">
@@ -389,8 +393,8 @@
               </div>
               <div class="content-text">
                 <ul ng-repeat="language in languages">
-                  <li>{{language.language}}</li>
-                  <li>{{language.fluency}}</li>
+                  <li>{{language.name}}</li>
+                  <li>{{language.level}}</li>
                 </ul>
               </div>
             </div>
@@ -448,7 +452,7 @@
                 <p ng-if="volunteer.summary">
                   {{volunteer.summary}}
                 </p>
-                <p ng-repeat="highlight in highlights" class="highlight">
+                <p ng-repeat="highlight in volunteer.highlights" class="highlight">
                   {{highlight}}
                 </p>
               </div>
@@ -466,7 +470,7 @@
               <div class="content-text work-listing education-listing">
                 <p ng-if="education.institution" class="heading">{{education.institution}}</p>
                 <p ng-if="education.studyType" class="highlight">
-                  {{education.studyType}}: <i>{{education.area}} ({{education.gpa}})</i>
+                  {{education.studyType}}: <i>{{education.area}}<span ng-if="education.gpa"> ({{education.gpa}})</span></i>
                 </p>
               </div>
             </div>
@@ -497,8 +501,7 @@
                 <p ng-repeat="skill in skills">
                   <span class="name" ng-if="skill.name">
                     <strong>
-                      {{skill.name}}<span ng-if="skill.level">({{skill.level}})</span>
-                        <span ng-if="skill.keywords">:{{skill.keywords.join(', ')}}</span>
+                      {{skill.name}}<span ng-if="skill.level">({{skill.level}})</span><span ng-if="skill.keywords">: {{skill.keywords.join(', ')}}</span>
                     </strong>
                   </span>
                 </p>
@@ -515,8 +518,7 @@
               <div class="content-text skills-listing">
                 <p ng-repeat="interest in interests">
                   <span class="name">
-                    <strong ng-if="interest.name">
-                      {{interest.name}}<span ng-if="interest.keywords">:{{interest.keywords.join(', ')}}</span>
+                    <strong ng-if="interest.name">{{interest.name}}<span ng-if="interest.keywords">: {{interest.keywords.join(', ')}}</span>
                     </strong>
                   </span>
               </div>
